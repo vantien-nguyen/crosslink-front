@@ -1,0 +1,28 @@
+{
+  "family": "${AWS_FRONTEND_TD}",
+  "executionRoleArn": "arn:aws:iam::943635619664:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "${AWS_FRONTEND_CONTAINER_NAME}",
+      "image": "${URI}/${AWS_FRONTEND_IMAGE_NAME}:${AWS_FRONTEND_IMAGE_VERSION}",
+      "cpu": 0,
+      "memory": ${FRONTEND_CONTAINER_MEMORY_SIZE},
+      "memoryReservation": 300,
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "environment": []
+    }
+  ],
+  "cpu": "1024",
+  "memory": "3072",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ]
+}

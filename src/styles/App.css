@@ -1,0 +1,81 @@
+:root {
+  /* Colors */
+  --crosslink-primary-color: #b7bef0;
+  --crosslink-grey-black-color: #272727;
+}
+
+/* Datepicker Customed styles */
+.react-datepicker__input-container input {
+  border: unset;
+  padding: 0;
+  background-color: #0000;
+  width: 12rem;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.react-datepicker__input-container input:focus {
+  --tw-ring-shadow: none;
+}
+
+.react-datepicker__day--in-selecting-range:not(
+    .react-datepicker__day--in-range,
+    .react-datepicker__month-text--in-range,
+    .react-datepicker__quarter-text--in-range,
+    .react-datepicker__year-text--in-range
+  ) {
+  background-color: #7dd3fc !important;
+}
+
+.react-datepicker__day--selected:hover,
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__day--in-range {
+  background-color: #7dd3fc !important;
+}
+
+.react-datepicker__header:not(.react-datepicker__header--has-time-select) {
+  border-bottom: none;
+}
+
+@media only screen and (max-width: 1536px) {
+  html {
+    font-size: 95%;
+  }
+}
+
+@media only screen and (max-width: 1536px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  html {
+    font-size: 95%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  html {
+    font-size: 82%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  html {
+    font-size: 88%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  html {
+    font-size: 90%;
+  }
+}

@@ -1,0 +1,65 @@
+image: node:16.15.1
+options:
+  docker: True
+
+definitions:
+  services:
+    docker:
+      memory: 3072
+
+static_check_and_tests: &static_check_and_tests
+  name: Static code checks & tests
+  size: 2x
+  caches:
+    - node
+  script:
+    - yarn install
+    - yarn format
+    - npm install eslint eslint-plugin-unused-imports @typescript-eslint/eslint-plugin --force
+    - npx eslint .
+    # - yarn test TODO:
+  artifacts:
+    - build/**
+
+deploy_to_production_aws: &deploy_to_production_aws
+  name: Deploy Frontend to AWS
+  deployment: production
+  script:
+    # Environment variables:
+    - touch .env.production
+    - echo "REACT_APP_ENV=${REACT_APP_ENV}" >> .env.production
+    - echo "REACT_APP_API_URL=${REACT_APP_API_URL}" >> .env.production
+
+    # Install and login to AWS.
+    - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    - unzip awscliv2.zip
+    - ./aws/install
+    - aws --version
+    - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $URI
+    - apt-get update && apt-get install gettext-base
+
+    # Build and push frontend image.
+    - docker build -t $AWS_FRONTEND_IMAGE_NAME:$AWS_FRONTEND_IMAGE_VERSION -f docker/Dockerfile.production --build-arg configuration=production .
+    - docker tag $AWS_FRONTEND_IMAGE_NAME:$AWS_FRONTEND_IMAGE_VERSION $URI/$AWS_FRONTEND_IMAGE_NAME:$AWS_FRONTEND_IMAGE_VERSION
+    - docker push $URI/$AWS_FRONTEND_IMAGE_NAME:$AWS_FRONTEND_IMAGE_VERSION
+    - export IMAGE_NAME="${URI}/${AWS_FRONTEND_IMAGE_NAME}:${AWS_FRONTEND_IMAGE_VERSION}"
+    - envsubst < docker/task-definition-frontend.json >  task-definition-frontend.json
+    - for taskarn in $(aws ecs list-tasks --cluster $AWS_CLUSTER_NAME --service $AWS_FRONTEND_SERVICE_NAME --desired-status RUNNING --output text --query 'taskArns'); do aws ecs stop-task --cluster $AWS_CLUSTER_NAME --task $taskarn; done;
+
+    # Update the frontend task definition.
+    - pipe: atlassian/aws-ecs-deploy:1.0.0
+      variables:
+        AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+        AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+        AWS_DEFAULT_REGION: $AWS_REGION
+        CLUSTER_NAME: $AWS_CLUSTER_NAME
+        SERVICE_NAME: $AWS_FRONTEND_SERVICE_NAME
+        TASK_DEFINITION: 'task-definition-frontend.json'
+        IMAGE_NAME: '${URI}/${AWS_FRONTEND_IMAGE_NAME}:${AWS_FRONTEND_IMAGE_VERSION}'
+        FORCE_NEW_DEPLOYMENT: 'true'
+
+pipelines:
+  branches:
+    main:
+      - step: *static_check_and_tests
+      - step: *deploy_to_production_aws
