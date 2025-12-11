@@ -1,6 +1,6 @@
-import EMPTY_IMG_URL from '../../assets/images/Empty.png';
-import { NONE, PERCENTAGE } from '../../constant/Constant';
-import { UpsellWidget } from '../../types/Upsell';
+import EMPTY_IMG_URL from "../../assets/images/Empty.png";
+import { NONE, PERCENTAGE } from "../../constant/Constant";
+import { UpsellWidget } from "../../types/Upsell";
 
 interface Props {
   upsellWidget: UpsellWidget;
@@ -71,15 +71,15 @@ const PreviewUpsellWidget = ({ upsellWidget }: Props) => {
         </div>
         <div>
           <h1 className="text-base font-semibold text-gray-900 dark:text-white mb-2 truncate">
-            {upsellProduct ? upsellProduct.shortened_title : ''}
+            {upsellProduct ? upsellProduct.shortened_title : ""}
           </h1>
           <div className="inline-flex">
             <p
               className={`text-sm font-semibold text-gray-900 dark:text-white mb-4 ${
-                hasDiscount() && 'line-through'
+                hasDiscount() && "line-through"
               }`}
             >
-              &euro;{upsellProduct ? upsellProduct.price : ''}
+              &euro;{upsellProduct ? upsellProduct.price : ""}
             </p>
             {hasDiscount() && (
               <p className="text-sm font-semibold text-gray-900 dark:text-white mb-4 ml-2">
@@ -93,7 +93,7 @@ const PreviewUpsellWidget = ({ upsellWidget }: Props) => {
           >
             <span>Subtotal</span>
             <p className="text-right w-full">
-              &euro;{upsellProduct ? upsellProduct.price : '0'}
+              &euro;{upsellProduct ? upsellProduct.price : "0"}
             </p>
           </div>
           <div className="w-full inline-flex text-sm font-semibold text-gray-500 dark:text-white mb-1">
@@ -110,7 +110,7 @@ const PreviewUpsellWidget = ({ upsellWidget }: Props) => {
           >
             <span>Total</span>
             <p className="text-right w-full">
-              &euro;{upsellProduct ? upsellProduct.price : '0'}
+              &euro;{upsellProduct ? upsellProduct.price : "0"}
             </p>
           </div>
           <div>
@@ -118,7 +118,7 @@ const PreviewUpsellWidget = ({ upsellWidget }: Props) => {
               className="mb-1 w-full bg-blue-500 hover:bg-blue-700 font-normal text-white font-bold py-1
                 px-3 rounded"
             >
-              PAY NOW . &euro;{upsellProduct ? finalPrice() : '0'}
+              PAY NOW . &euro;{upsellProduct ? finalPrice() : "0"}
             </button>
             <button
               className="w-full bg-transparent hover:bg-blue-500 text-blue-700 font-normal

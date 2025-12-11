@@ -1,15 +1,15 @@
-import { ChangeEvent, useState } from 'react';
-import { useCookies } from 'react-cookie';
-import { useDispatch, useSelector } from 'react-redux';
-import { useQuery } from '@tanstack/react-query';
+import { ChangeEvent, useState } from "react";
+import { useCookies } from "react-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
 
-import { getProducts } from '../../api/ProductAPIs';
-import { ERROR, PRODUCT_LIMIT_PER_PAGE } from '../../constant/Constant';
-import { changeMessage } from '../../reducers/ActionSlice';
-import { RootState } from '../../store';
-import { Product } from '../../types/Product';
-import Table from '../ui/Table';
-import Toast from '../ui/Toast';
+import { getProducts } from "../../api/ProductAPIs";
+import { ERROR, PRODUCT_LIMIT_PER_PAGE } from "../../constant/Constant";
+import { changeMessage } from "../../reducers/ActionSlice";
+import { RootState } from "../../store";
+import { Product } from "../../types/Product";
+import Table from "../ui/Table";
+import Toast from "../ui/Toast";
 
 interface Props {
   checkedProducts: Product[];
@@ -27,10 +27,10 @@ export default function ProductModal({
   multipleSelection,
 }: Props) {
   const dispatch = useDispatch();
-  const [cookies] = useCookies(['shopId']);
+  const [cookies] = useCookies(["shopId"]);
   const [currentPage, setCurrentPage] = useState(1);
   const offset = PRODUCT_LIMIT_PER_PAGE * (currentPage - 1);
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
   const message = useSelector((state: RootState) => state.action.message);
 
   const {
@@ -39,7 +39,7 @@ export default function ProductModal({
     isError,
     error,
   } = useQuery({
-    queryKey: ['products', currentPage, searchText],
+    queryKey: ["products", currentPage, searchText],
     queryFn: () =>
       getProducts(cookies.shopId, offset, PRODUCT_LIMIT_PER_PAGE, searchText),
   });
@@ -62,7 +62,7 @@ export default function ProductModal({
       } else if (event.target.checked && checkedProducts.length >= 10) {
         dispatch(
           changeMessage({
-            content: 'You cannot select more than 10 products!',
+            content: "You cannot select more than 10 products!",
             type: ERROR,
           }),
         );

@@ -1,5 +1,5 @@
-import { loginShopify } from '../../api/Auth';
-import PersistSignIn from '../signin/PersistSignIn';
+import { loginShopify } from "../../api/Auth";
+import PersistSignIn from "../signin/PersistSignIn";
 
 export default function ShopifyAuth() {
   let view = <></>;
@@ -12,10 +12,10 @@ export default function ShopifyAuth() {
   const queryParamsSize = Array.from(queryParams).length;
 
   if (queryParamsSize === 4 || queryParamsSize === 3) {
-    hmac = queryParams.get('hmac');
-    host = queryParams.get('host');
-    shop = queryParams.get('shop');
-    timestamp = queryParams.get('timestamp');
+    hmac = queryParams.get("hmac");
+    host = queryParams.get("host");
+    shop = queryParams.get("shop");
+    timestamp = queryParams.get("timestamp");
     console.log(queryParams);
     (async () => {
       const result = await loginShopify(

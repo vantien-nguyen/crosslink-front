@@ -1,8 +1,8 @@
-import { PRODUCT_LIMIT_PER_PAGE } from '../../constant/Constant';
-import { Product } from '../../types/Product';
+import { PRODUCT_LIMIT_PER_PAGE } from "../../constant/Constant";
+import { Product } from "../../types/Product";
 
-import Loading from './Loading';
-import Pagination from './Pagination';
+import Loading from "./Loading";
+import Pagination from "./Pagination";
 
 interface Props {
   searchText: string;
@@ -67,7 +67,7 @@ const Table = ({
               dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search product"
             value={searchText}
-            onChange={e => setSearchText(e.target.value)}
+            onChange={(e) => setSearchText(e.target.value)}
           />
         </div>
       </div>
@@ -127,7 +127,7 @@ const Table = ({
                           dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700
                           dark:border-gray-600"
                         checked={isItemSelected}
-                        onChange={event =>
+                        onChange={(event) =>
                           handleItemClick(event, product.cms_product_id)
                         }
                       />

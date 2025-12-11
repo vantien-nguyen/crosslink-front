@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-import axiosPrivate from './axios';
+import axiosPrivate from "./axios";
 
 export const editLogo = async (data: {
   shopId: number;
@@ -27,7 +27,7 @@ export const editLogo = async (data: {
 export const saveAWSLogo = async (data: any) => {
   const response = await axios({
     url: data.url,
-    method: 'POST',
+    method: "POST",
     data: data.formData,
   });
 

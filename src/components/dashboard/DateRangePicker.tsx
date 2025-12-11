@@ -1,8 +1,8 @@
-import DatePicker from 'react-datepicker';
+import DatePicker from "react-datepicker";
 
-import CalendarIcon from '../../assets/icons/calendar.svg';
+import CalendarIcon from "../../assets/icons/calendar.svg";
 
-import 'react-datepicker/dist/react-datepicker.css';
+import "react-datepicker/dist/react-datepicker.css";
 
 interface Props {
   startDate: Date;

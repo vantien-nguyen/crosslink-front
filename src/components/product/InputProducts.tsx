@@ -1,5 +1,5 @@
-import { Product } from '../../types/Product';
-import Input from '../ui/Input';
+import { Product } from "../../types/Product";
+import Input from "../ui/Input";
 
 interface Props {
   id: string;
@@ -45,7 +45,7 @@ const InputProducts = ({
           onClick={onClick}
         >
           <ul role="list" className="divide-y divide-gray-200">
-            {selectedProducts?.slice(0, 3).map(product => {
+            {selectedProducts?.slice(0, 3).map((product) => {
               return (
                 <li key={product.id} className="hover:bg-gray-200">
                   <div className="flex items-center">

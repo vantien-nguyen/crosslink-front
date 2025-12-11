@@ -1,8 +1,8 @@
-import ArrowDown from '../../assets/icons/arrow_down.svg';
-import ArrowUp from '../../assets/icons/arrow_up.svg';
-import MinusIcon from '../../assets/icons/minus.svg';
-import { CONVERSIONS, CTR, SALES } from '../../constant/Constant';
-import { formatNumber } from '../../utils';
+import ArrowDown from "../../assets/icons/arrow_down.svg";
+import ArrowUp from "../../assets/icons/arrow_up.svg";
+import MinusIcon from "../../assets/icons/minus.svg";
+import { CONVERSIONS, CTR, SALES } from "../../constant/Constant";
+import { formatNumber } from "../../utils";
 
 interface Props {
   value: number;
@@ -27,16 +27,16 @@ const MetricItem = ({
 }: Props) => {
   return (
     <div
-      className={`rounded-lg ${metric.metricName === currentMetric && 'bg-blue-100'} p-4 min-w-40
+      className={`rounded-lg ${metric.metricName === currentMetric && "bg-blue-100"} p-4 min-w-40
       max-w-48 border border-gray-200 shadow hover:cursor-pointer hover:bg-blue-200
       md:min-w-40`}
       onClick={() => handleOnClick(metric.metricName, metric.dailyMetricName)}
     >
       <img className="mb-2 min-h-6 min-w-6 max-h-6 max-w-6" src={metric.icon} />
       <p className="text-xl font-bold text-gray-700 dark:text-white md:text-base">
-        {metric.key === SALES.key ? '€' : ''}
+        {metric.key === SALES.key ? "€" : ""}
         {formatNumber(value)}
-        {[CTR.key, CONVERSIONS.key].includes(metric.key) ? '%' : ''}
+        {[CTR.key, CONVERSIONS.key].includes(metric.key) ? "%" : ""}
       </p>
       <div className="flex justify-between">
         <div className="flex-initial">

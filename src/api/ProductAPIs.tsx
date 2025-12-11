@@ -1,4 +1,4 @@
-import axiosPrivate from './axios';
+import axiosPrivate from "./axios";
 
 export const getProducts = async (
   shopId: number,

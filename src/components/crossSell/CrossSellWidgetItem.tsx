@@ -1,22 +1,22 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useMutation } from '@tanstack/react-query';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useMutation } from "@tanstack/react-query";
 
-import { editCrossSellWidgetStatus } from '../../api/CrossSellAPIs';
-import ChartIcon from '../../assets/icons/chart.svg';
-import DeleteIcon from '../../assets/icons/delete.svg';
-import EditIcon from '../../assets/icons/edit.svg';
+import { editCrossSellWidgetStatus } from "../../api/CrossSellAPIs";
+import ChartIcon from "../../assets/icons/chart.svg";
+import DeleteIcon from "../../assets/icons/delete.svg";
+import EditIcon from "../../assets/icons/edit.svg";
 import {
   ERROR,
   FIXED_AMOUNT,
   PERCENTAGE,
   SUCCESS,
-} from '../../constant/Constant';
-import CrossSellWidgetEdit from '../../pages/crossSell/CrossSellWidgetEdit';
-import { changeMessage } from '../../reducers/ActionSlice';
-import { changeView } from '../../reducers/SidebarSlice';
-import { CrossSellWidget } from '../../types/CrossSell';
-import Toggle from '../ui/Toggle';
+} from "../../constant/Constant";
+import CrossSellWidgetEdit from "../../pages/crossSell/CrossSellWidgetEdit";
+import { changeMessage } from "../../reducers/ActionSlice";
+import { changeView } from "../../reducers/SidebarSlice";
+import { CrossSellWidget } from "../../types/CrossSell";
+import Toggle from "../ui/Toggle";
 
 type Props = {
   widget: CrossSellWidget;
@@ -36,9 +36,9 @@ export default function CrossSellWidgetItem({
 
   const editCrossSellWidgetMutation = useMutation({
     mutationFn: editCrossSellWidgetStatus,
-    onSuccess: newCrossSellWidget => {
+    onSuccess: (newCrossSellWidget) => {
       setCrossSellWidget(newCrossSellWidget.widget);
-      const message = `Cross sell widget ${newCrossSellWidget.status === 'active' ? 'activated!' : 'deactivated!'}`;
+      const message = `Cross sell widget ${newCrossSellWidget.status === "active" ? "activated!" : "deactivated!"}`;
 
       dispatch(
         changeMessage({
@@ -47,7 +47,7 @@ export default function CrossSellWidgetItem({
         }),
       );
     },
-    onError: error => {
+    onError: (error) => {
       dispatch(
         changeMessage({
           content: error.message,
@@ -60,7 +60,7 @@ export default function CrossSellWidgetItem({
   const handleUpdateWidgetStatus = async (event: any) => {
     const updatedWidget = {
       ...crossSellWidget,
-      status: event.target.checked ? 'active' : 'inactive',
+      status: event.target.checked ? "active" : "inactive",
     };
 
     editCrossSellWidgetMutation.mutate(updatedWidget);
@@ -77,13 +77,13 @@ export default function CrossSellWidgetItem({
         </div>
         <Toggle
           className="justify-end"
-          checked={crossSellWidget.status === 'active'}
+          checked={crossSellWidget.status === "active"}
           onChange={handleUpdateWidgetStatus}
         />
       </div>
 
       <div className="inline-flex my-2 overflow-hidden gap-2">
-        {crossSellWidget.detailed_products?.slice(0, 4).map(product => {
+        {crossSellWidget.detailed_products?.slice(0, 4).map((product) => {
           return (
             <img
               key={product.id}
@@ -97,12 +97,12 @@ export default function CrossSellWidgetItem({
       <div className="inline-flex mb-2">
         {crossSellWidget.discount && (
           <p className="text-sm font-medium text-gray-700 dark:text-gray-400">
-            {crossSellWidget.discount.value_type === FIXED_AMOUNT && '€'}
+            {crossSellWidget.discount.value_type === FIXED_AMOUNT && "€"}
             {crossSellWidget.discount.value}
-            {crossSellWidget.discount.value_type === PERCENTAGE && '%'}
-            {' off '}
+            {crossSellWidget.discount.value_type === PERCENTAGE && "%"}
+            {" off "}
             {crossSellWidget.cms_product_ids.length}
-            {' products'}
+            {" products"}
           </p>
         )}
       </div>
@@ -111,7 +111,7 @@ export default function CrossSellWidgetItem({
         <button
           className="mr-3"
           onClick={() => {
-            console.log('dahsboard');
+            console.log("dahsboard");
           }}
         >
           <div className="flex items-center">

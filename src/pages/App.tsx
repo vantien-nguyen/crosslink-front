@@ -1,24 +1,24 @@
-import React from 'react';
-import { CookiesProvider } from 'react-cookie';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React from "react";
+import { CookiesProvider } from "react-cookie";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import SideBar from '../components/sidebar/SideBar';
-import { AuthProvider } from '../context/AuthProvider';
+import SideBar from "../components/sidebar/SideBar";
+import { AuthProvider } from "../context/AuthProvider";
 
-import CrossSell from './crossSell/CrossSell';
-import Dashboard from './dashboard/Dashboard';
-import { Settings } from './settings/Settings';
-import ShopifyAuth from './shopify/ShopifyAuth';
-import PersistSignIn from './signin/PersistSignIn';
-import SignIn from './signin/SignIn';
-import SignUp from './signup/SignUp';
-import Upsell from './upsell/Upsell';
+import CrossSell from "./crossSell/CrossSell";
+import Dashboard from "./dashboard/Dashboard";
+import { Settings } from "./settings/Settings";
+import ShopifyAuth from "./shopify/ShopifyAuth";
+import PersistSignIn from "./signin/PersistSignIn";
+import SignIn from "./signin/SignIn";
+import SignUp from "./signup/SignUp";
+import Upsell from "./upsell/Upsell";
 
-import '../styles/App.css';
+import "../styles/App.css";
 
 export default function App() {
   return (
-    <CookiesProvider defaultSetOptions={{ path: '/' }}>
+    <CookiesProvider defaultSetOptions={{ path: "/" }}>
       <BrowserRouter>
         <AuthProvider>
           <Routes>

@@ -1,7 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
 
-import { checkUpsellExtension } from '../../api/UpsellAPIs';
-import InfoIcon from '../../assets/icons/info.svg';
+import { checkUpsellExtension } from "../../api/UpsellAPIs";
+import InfoIcon from "../../assets/icons/info.svg";
 
 interface Props {
   shopUrl: string;
@@ -13,7 +13,7 @@ const UpsellExtension = ({ shopUrl }: Props) => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ['upsellExtension'],
+    queryKey: ["upsellExtension"],
     queryFn: () => checkUpsellExtension(shopUrl),
   });
 
@@ -37,6 +37,7 @@ const UpsellExtension = ({ shopUrl }: Props) => {
               target="_blank"
               href={`https://${shopUrl}/admin/settings/checkout`}
               className="text-sm font-medium hover:text-blue-500"
+              rel="noreferrer"
             >
               {`https://${shopUrl}/admin/settings/checkout`}
             </a>

@@ -1,52 +1,52 @@
-import { useState } from 'react';
-import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
-import { signIn } from '../../api/Auth';
-import { accessToken } from '../../api/axios';
-import Logo from '../../assets/icons/logo.png';
-import Input from '../../components/ui/Input';
+import { signIn } from "../../api/Auth";
+import { accessToken } from "../../api/axios";
+import Logo from "../../assets/icons/logo.png";
+import Input from "../../components/ui/Input";
 import {
   EMAIL_NOT_FOUND_MSG,
   EMPTY_EMAIL_MSG,
   EMPTY_PASSWORD_MSG,
   LOGIN_FAILED_MSG,
   WRONG_PASSWORD_MSG,
-} from '../../constant/Constant';
-import useAuth from '../../hooks/useAuth';
+} from "../../constant/Constant";
+import useAuth from "../../hooks/useAuth";
 
 export default function SignIn() {
   const navigate = useNavigate();
   const { setAuthenticated } = useAuth();
   const [, setCookie] = useCookies([
-    'shopId',
-    'shopName',
-    'shopUrl',
-    'logoUrl',
+    "shopId",
+    "shopName",
+    "shopUrl",
+    "logoUrl",
   ]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState({
-    general: '',
-    email: '',
-    password: '',
+    general: "",
+    email: "",
+    password: "",
   });
 
   function validate() {
     let result = true;
     const errorMsgTemp = { ...errorMsg };
 
-    if (email == '') {
+    if (email == "") {
       errorMsgTemp.email = EMPTY_EMAIL_MSG;
       result = false;
     } else {
-      errorMsgTemp.email = '';
+      errorMsgTemp.email = "";
     }
-    if (password == '') {
+    if (password == "") {
       errorMsgTemp.password = EMPTY_PASSWORD_MSG;
       result = false;
     } else {
-      errorMsgTemp.password = '';
+      errorMsgTemp.password = "";
     }
     setErrorMsg(errorMsgTemp);
     return result;
@@ -57,21 +57,21 @@ export default function SignIn() {
 
     if (validate()) {
       const errorMsgTemp = {
-        general: '',
-        email: '',
-        password: '',
+        general: "",
+        email: "",
+        password: "",
       };
 
       const response = await signIn({ email: email, password: password });
 
       if (response?.status === 200) {
-        setCookie('shopId', response.data.shop_id);
-        setCookie('shopName', response.data.shop_name);
-        setCookie('shopUrl', response.data.shop_url);
-        setCookie('logoUrl', response.data.logo_url);
+        setCookie("shopId", response.data.shop_id);
+        setCookie("shopName", response.data.shop_name);
+        setCookie("shopUrl", response.data.shop_url);
+        setCookie("logoUrl", response.data.logo_url);
         accessToken.value = response.data.access;
         setAuthenticated(true);
-        navigate('/dashboard', { replace: true });
+        navigate("/dashboard", { replace: true });
       } else if (response.status === 404) {
         if (response.data.message === EMAIL_NOT_FOUND_MSG) {
           errorMsgTemp.email = EMAIL_NOT_FOUND_MSG;
@@ -107,7 +107,7 @@ export default function SignIn() {
               >
                 Sign in to your account
               </h1>
-              {errorMsg.general !== '' && (
+              {errorMsg.general !== "" && (
                 <div className="my-4 text-sm text-gray-500 text-red-500">
                   {errorMsg.general}
                 </div>
@@ -122,7 +122,7 @@ export default function SignIn() {
                   value={email}
                   error={errorMsg.email}
                   placeholder="example@gmail.com"
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <Input
                   id="password"
@@ -133,7 +133,7 @@ export default function SignIn() {
                   value={password}
                   error={errorMsg.password}
                   placeholder="••••••••"
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
@@ -173,7 +173,7 @@ export default function SignIn() {
                   Sign in
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  Don’t have an account yet?{'  '}
+                  Don’t have an account yet?{"  "}
                   <a
                     href="/signup"
                     className="font-medium text-blue-600 hover:underline dark:text-blue-500"

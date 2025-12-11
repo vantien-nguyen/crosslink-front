@@ -1,38 +1,38 @@
-import { useCookies } from 'react-cookie';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
+import { useCookies } from "react-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
 
-import { accessToken } from '../../api/axios';
-import { signOut } from '../../api/UserAPIs';
-import Logo from '../../assets/icons/logo.png';
-import SignOutIcon from '../../assets/icons/signout.svg';
+import { accessToken } from "../../api/axios";
+import { signOut } from "../../api/UserAPIs";
+import Logo from "../../assets/icons/logo.png";
+import SignOutIcon from "../../assets/icons/signout.svg";
 import {
   NAVIGATION_ITEM_SETTING,
   NAVIGATIONS,
   SETTINGS,
-} from '../../constant/Constant';
-import useAuth from '../../hooks/useAuth';
+} from "../../constant/Constant";
+import useAuth from "../../hooks/useAuth";
 import {
   changeNavigation,
   changeView,
   setOpenSidebarMd,
-} from '../../reducers/SidebarSlice';
-import { RootState } from '../../store';
-import { getNavigation, getView } from '../../utils';
+} from "../../reducers/SidebarSlice";
+import { RootState } from "../../store";
+import { getNavigation, getView } from "../../utils";
 
-import SideBarItem from './SideBarItem';
+import SideBarItem from "./SideBarItem";
 
 export default function SideBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { setAuthenticated } = useAuth();
   const [cookies, _, removeCookie] = useCookies([
-    'shopId',
-    'shopName',
-    'shopUrl',
-    'logoUrl',
-    'refresh',
+    "shopId",
+    "shopName",
+    "shopUrl",
+    "logoUrl",
+    "refresh",
   ]);
   const currentHref = window.location.href.slice(
     process.env.REACT_APP_API_URL?.length,
@@ -64,16 +64,16 @@ export default function SideBar() {
   const signoutMutation = useMutation({
     mutationFn: signOut,
     onSuccess: () => {
-      accessToken.value = '';
+      accessToken.value = "";
       setAuthenticated(false);
-      removeCookie('shopId');
-      removeCookie('shopName');
-      removeCookie('shopUrl');
-      removeCookie('logoUrl');
-      removeCookie('refresh');
-      navigate('/signin', { replace: true });
+      removeCookie("shopId");
+      removeCookie("shopName");
+      removeCookie("shopUrl");
+      removeCookie("logoUrl");
+      removeCookie("refresh");
+      navigate("/signin", { replace: true });
     },
-    onError: error => {
+    onError: (error) => {
       console.log(error.message);
     },
   });
@@ -156,7 +156,7 @@ export default function SideBar() {
 
       <div
         id="logo-sidebar"
-        className={`${openSidebarMd && 'translate-x-0'} fixed left-0 top-0 z-40 h-screen w-64
+        className={`${openSidebarMd && "translate-x-0"} fixed left-0 top-0 z-40 h-screen w-64
         -translate-x-full border-r border-gray-200 pt-20 transition-transform
         dark:border-gray-700 dark:bg-gray-800 md:translate-x-0 bg-white`}
         aria-label="Sidebar"
@@ -222,7 +222,7 @@ export default function SideBar() {
         ></div>
       )}
 
-      <div className={'my-16 mx-0 p-4 md:ml-64'}>{view}</div>
+      <div className={"my-16 mx-0 p-4 md:ml-64"}>{view}</div>
     </>
   );
 }

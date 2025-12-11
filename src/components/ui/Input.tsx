@@ -1,6 +1,6 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
-import { RootState } from '../../store';
+import { RootState } from "../../store";
 
 interface Props {
   label?: string;
@@ -36,7 +36,7 @@ const Input = ({
       {label && (
         <label
           htmlFor={name}
-          className={`${required ? `after:content-['*'] after:ml-0.5 after:text-red-500` : ''} mb-2
+          className={`${required ? `after:content-['*'] after:ml-0.5 after:text-red-500` : ""} mb-2
           block text-sm font-medium text-gray-700 dark:text-white`}
         >
           {label}
@@ -57,7 +57,7 @@ const Input = ({
         onChange={onChange}
         onClick={onClick}
       />
-      {error !== '' && (
+      {error !== "" && (
         <p className="mt-1 text-xs text-gray-500 text-red-500">{error}</p>
       )}
     </div>

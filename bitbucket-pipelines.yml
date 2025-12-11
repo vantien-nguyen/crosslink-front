@@ -54,9 +54,9 @@ deploy_to_production_aws: &deploy_to_production_aws
         AWS_DEFAULT_REGION: $AWS_REGION
         CLUSTER_NAME: $AWS_CLUSTER_NAME
         SERVICE_NAME: $AWS_FRONTEND_SERVICE_NAME
-        TASK_DEFINITION: 'task-definition-frontend.json'
-        IMAGE_NAME: '${URI}/${AWS_FRONTEND_IMAGE_NAME}:${AWS_FRONTEND_IMAGE_VERSION}'
-        FORCE_NEW_DEPLOYMENT: 'true'
+        TASK_DEFINITION: "task-definition-frontend.json"
+        IMAGE_NAME: "${URI}/${AWS_FRONTEND_IMAGE_NAME}:${AWS_FRONTEND_IMAGE_VERSION}"
+        FORCE_NEW_DEPLOYMENT: "true"
 
 pipelines:
   branches:

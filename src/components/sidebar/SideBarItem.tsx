@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 type Props = {
   navigation: number;
@@ -21,7 +21,7 @@ export default function SideBarItem({
     <>
       <li
         key={id}
-        className={navigation === id ? 'rounded-lg bg-blue-200' : ''}
+        className={navigation === id ? "rounded-lg bg-blue-200" : ""}
       >
         <Link
           to={href}

@@ -1,29 +1,29 @@
-import { useState } from 'react';
-import { useCookies } from 'react-cookie';
-import { useDispatch, useSelector } from 'react-redux';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useState } from "react";
+import { useCookies } from "react-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { deleteUpsellWidget, getUpsellWidgets } from '../../api/UpsellAPIs';
-import PlusIcon from '../../assets/icons/plus.svg';
-import Button from '../../components/ui/Button';
-import Loading from '../../components/ui/Loading';
-import Pagination from '../../components/ui/Pagination';
-import Toast from '../../components/ui/Toast';
-import UpsellExtension from '../../components/upsell/UpsellExtension';
-import UpsellWidgetItem from '../../components/upsell/UpsellWidgetItem';
-import { ERROR, SUCCESS, WIDGET_LIMIT_PER_PAGE } from '../../constant/Constant';
-import { changeMessage } from '../../reducers/ActionSlice';
-import { changeView } from '../../reducers/SidebarSlice';
-import { RootState } from '../../store';
-import { UpsellWidget } from '../../types/Upsell';
-import { documentTitle } from '../../utils';
+import { deleteUpsellWidget, getUpsellWidgets } from "../../api/UpsellAPIs";
+import PlusIcon from "../../assets/icons/plus.svg";
+import Button from "../../components/ui/Button";
+import Loading from "../../components/ui/Loading";
+import Pagination from "../../components/ui/Pagination";
+import Toast from "../../components/ui/Toast";
+import UpsellExtension from "../../components/upsell/UpsellExtension";
+import UpsellWidgetItem from "../../components/upsell/UpsellWidgetItem";
+import { ERROR, SUCCESS, WIDGET_LIMIT_PER_PAGE } from "../../constant/Constant";
+import { changeMessage } from "../../reducers/ActionSlice";
+import { changeView } from "../../reducers/SidebarSlice";
+import { RootState } from "../../store";
+import { UpsellWidget } from "../../types/Upsell";
+import { documentTitle } from "../../utils";
 
-import UpsellWidgetCreate from './UpsellWidgetCreate';
+import UpsellWidgetCreate from "./UpsellWidgetCreate";
 
 export default function Upsell() {
-  documentTitle('Upsell');
+  documentTitle("Upsell");
   const dispatch = useDispatch();
-  const [cookies] = useCookies(['shopId', 'shopUrl']);
+  const [cookies] = useCookies(["shopId", "shopUrl"]);
   const [currentPage, setCurrentPage] = useState(1);
   const offset = WIDGET_LIMIT_PER_PAGE * (currentPage - 1);
   const queryClient = useQueryClient();
@@ -35,7 +35,7 @@ export default function Upsell() {
     isError,
     error,
   } = useQuery({
-    queryKey: ['upsellWidgets', currentPage],
+    queryKey: ["upsellWidgets", currentPage],
     queryFn: () =>
       getUpsellWidgets(cookies.shopId, offset, WIDGET_LIMIT_PER_PAGE),
   });
@@ -43,15 +43,15 @@ export default function Upsell() {
   const deleteUpsellWidgetMutation = useMutation({
     mutationFn: deleteUpsellWidget,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['upsellWidgets'] });
+      queryClient.invalidateQueries({ queryKey: ["upsellWidgets"] });
       dispatch(
         changeMessage({
-          content: 'Upsell widget deleted!',
+          content: "Upsell widget deleted!",
           type: SUCCESS,
         }),
       );
     },
-    onError: error => {
+    onError: (error) => {
       dispatch(
         changeMessage({
           content: error.message,
@@ -65,7 +65,7 @@ export default function Upsell() {
     if (id) {
       deleteUpsellWidgetMutation.mutate(id);
     } else {
-      console.log('error');
+      console.log("error");
     }
   }
 
@@ -81,7 +81,7 @@ export default function Upsell() {
       <Button
         className="my-4"
         icon={PlusIcon}
-        name={'New widget'}
+        name={"New widget"}
         onClick={handleOpenAddNewWidget}
       />
       <UpsellExtension shopUrl={cookies.shopUrl} />

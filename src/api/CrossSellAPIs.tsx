@@ -1,6 +1,6 @@
-import { CrossSellWidget } from '../types/CrossSell';
+import { CrossSellWidget } from "../types/CrossSell";
 
-import axiosPrivate from './axios';
+import axiosPrivate from "./axios";
 
 export const getCrossSellWidgets = async (
   shopId: number,

@@ -1,6 +1,6 @@
-import { UpsellWidget } from '../types/Upsell';
+import { UpsellWidget } from "../types/Upsell";
 
-import axiosPrivate from './axios';
+import axiosPrivate from "./axios";
 
 export const getUpsellWidgets = async (
   shopId: number,

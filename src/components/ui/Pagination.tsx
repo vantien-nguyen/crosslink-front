@@ -44,7 +44,7 @@ export default function Pagination({
                     dark:hover:text-white`
               }
               style={{
-                cursor: 'pointer',
+                cursor: "pointer",
               }}
             >
               {i}
@@ -83,12 +83,12 @@ export default function Pagination({
       <nav aria-label="Page navigation example">
         <div className="mb-1">
           <p className="text-sm text-gray-500">
-            Showing{' '}
+            Showing{" "}
             <span className="font-medium">
               {currentPage != totalPages
                 ? itemsPerPage
                 : totalItems - itemsPerPage * (currentPage - 1)}
-            </span>{' '}
+            </span>{" "}
             of <span className="font-medium">{totalItems}</span> results
           </p>
         </div>

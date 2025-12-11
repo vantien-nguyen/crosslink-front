@@ -1,50 +1,50 @@
-import { useState } from 'react';
-import { useCookies } from 'react-cookie';
-import { useDispatch, useSelector } from 'react-redux';
-import { useMutation } from '@tanstack/react-query';
+import { useState } from "react";
+import { useCookies } from "react-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { useMutation } from "@tanstack/react-query";
 
-import { editLogo, saveAWSLogo } from '../../api/SettingAPIs';
-import { updatePassword } from '../../api/UserAPIs';
-import Input from '../../components/ui/Input';
-import Loading from '../../components/ui/Loading';
-import Toast from '../../components/ui/Toast';
+import { editLogo, saveAWSLogo } from "../../api/SettingAPIs";
+import { updatePassword } from "../../api/UserAPIs";
+import Input from "../../components/ui/Input";
+import Loading from "../../components/ui/Loading";
+import Toast from "../../components/ui/Toast";
 import {
   CONFIRM_PASSWORD_MSG,
   ERROR,
   STRONG_PASSWORD_MSG,
   STRONG_PASSWORD_REGEX,
   SUCCESS,
-} from '../../constant/Constant';
-import { changeLoading, changeMessage } from '../../reducers/ActionSlice';
-import { RootState } from '../../store';
-import { documentTitle } from '../../utils';
+} from "../../constant/Constant";
+import { changeLoading, changeMessage } from "../../reducers/ActionSlice";
+import { RootState } from "../../store";
+import { documentTitle } from "../../utils";
 
 export function Settings() {
-  documentTitle('Settings');
+  documentTitle("Settings");
   const dispatch = useDispatch();
-  const [cookies, setCookie, removeCookie] = useCookies(['shopId', 'logoUrl']);
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [currentPasswordMsg, setCurrentPasswordMsg] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [newPasswordMsg, setNewPasswordMsg] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [confirmPasswordMsg, setConfirmPasswordMsg] = useState('');
-  const [file, setFile] = useState('');
-  const [logoFile, setLogoFile] = useState(new File([''], ''));
-  const [newLogoUrl, setNewLogoUrl] = useState('');
+  const [cookies, setCookie, removeCookie] = useCookies(["shopId", "logoUrl"]);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [currentPasswordMsg, setCurrentPasswordMsg] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [newPasswordMsg, setNewPasswordMsg] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPasswordMsg, setConfirmPasswordMsg] = useState("");
+  const [file, setFile] = useState("");
+  const [logoFile, setLogoFile] = useState(new File([""], ""));
+  const [newLogoUrl, setNewLogoUrl] = useState("");
   const loading = useSelector((state: RootState) => state.action.loading);
   const message = useSelector((state: RootState) => state.action.message);
 
   const editLogoMutatioin = useMutation({
     mutationFn: editLogo,
-    onSuccess: data => {
+    onSuccess: (data) => {
       const formData = new FormData();
 
-      Object.keys(data.fields).forEach(key => {
+      Object.keys(data.fields).forEach((key) => {
         formData.set(key, data.fields[key]);
       });
-      formData.append('file', logoFile);
-      setNewLogoUrl(data.url + data.fields['key']);
+      formData.append("file", logoFile);
+      setNewLogoUrl(data.url + data.fields["key"]);
 
       saveAWSLogoMutatioin.mutate({
         url: data.url,
@@ -52,18 +52,18 @@ export function Settings() {
       });
     },
     onError: () => {
-      console.log('Edit logo failed');
+      console.log("Edit logo failed");
     },
   });
 
   const saveAWSLogoMutatioin = useMutation({
     mutationFn: saveAWSLogo,
     onSuccess: () => {
-      removeCookie('logoUrl');
-      setCookie('logoUrl', newLogoUrl);
+      removeCookie("logoUrl");
+      setCookie("logoUrl", newLogoUrl);
     },
     onError: () => {
-      console.log('save logo failed');
+      console.log("save logo failed");
     },
   });
 
@@ -83,13 +83,13 @@ export function Settings() {
     onSuccess: () => {
       dispatch(
         changeMessage({
-          content: 'Password updated!',
+          content: "Password updated!",
           type: SUCCESS,
         }),
       );
       dispatch(changeLoading(false));
     },
-    onError: error => {
+    onError: (error) => {
       dispatch(
         changeMessage({
           content: error.message,
@@ -113,13 +113,13 @@ export function Settings() {
   };
 
   function validate() {
-    if (currentPassword == '') {
-      setCurrentPasswordMsg('Please input existing password!');
+    if (currentPassword == "") {
+      setCurrentPasswordMsg("Please input existing password!");
       return false;
     }
 
-    if (newPassword == '') {
-      setNewPasswordMsg('Please input new password!');
+    if (newPassword == "") {
+      setNewPasswordMsg("Please input new password!");
       return false;
     }
 
@@ -133,20 +133,20 @@ export function Settings() {
       return false;
     }
 
-    setCurrentPasswordMsg('');
-    setNewPasswordMsg('');
-    setConfirmPasswordMsg('');
+    setCurrentPasswordMsg("");
+    setNewPasswordMsg("");
+    setConfirmPasswordMsg("");
     return true;
   }
 
   return (
-    <div className={`max-w-2xl mx-auto p-4 ${loading && 'relative block'}`}>
-      <div className={`mb-8 ${loading && 'opacity-15'}`}>
+    <div className={`max-w-2xl mx-auto p-4 ${loading && "relative block"}`}>
+      <div className={`mb-8 ${loading && "opacity-15"}`}>
         <div className="space-y-4 md:space-y-6">
           <div className="w-full pr-10">
             <div className="text-sm font-bold mb-4">Logo</div>
             <div className="flex items-center mb-4">
-              {file !== '' ? (
+              {file !== "" ? (
                 <img
                   className="h-10 w-10 inline-block rounded-full border-solid border-2 border-gray-200"
                   src={file}
@@ -161,7 +161,7 @@ export function Settings() {
               <div className="ml-4 text-sm text-gray-700">
                 {logoFile.name.length < 30
                   ? logoFile.name
-                  : logoFile.name.substring(0, 30) + '....'}
+                  : logoFile.name.substring(0, 30) + "...."}
               </div>
             </div>
             <div
@@ -181,34 +181,34 @@ export function Settings() {
 
           <h2 className="text-sm font-semibold">Change Password</h2>
           <Input
-            id={'currentPassWord'}
+            id={"currentPassWord"}
             label="Current Password"
-            type={'password'}
+            type={"password"}
             required={true}
             value={currentPassword}
             error={currentPasswordMsg}
             placeholder="••••••••"
-            onChange={e => setCurrentPassword(e.target.value)}
+            onChange={(e) => setCurrentPassword(e.target.value)}
           />
           <Input
-            id={'newPassWord'}
+            id={"newPassWord"}
             label="New Password"
-            type={'password'}
+            type={"password"}
             required={true}
             value={newPassword}
             error={newPasswordMsg}
             placeholder="••••••••"
-            onChange={e => setNewPassword(e.target.value)}
+            onChange={(e) => setNewPassword(e.target.value)}
           />
           <Input
-            id={'confirmPassword'}
+            id={"confirmPassword"}
             label="Confirm Password"
-            type={'password'}
+            type={"password"}
             required={true}
             value={confirmPassword}
             error={confirmPasswordMsg}
             placeholder="••••••••"
-            onChange={e => setConfirmPassword(e.target.value)}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
 
           <button

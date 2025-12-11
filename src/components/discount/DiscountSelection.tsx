@@ -1,4 +1,4 @@
-import { FIXED_AMOUNT, PERCENTAGE } from '../../constant/Constant';
+import { FIXED_AMOUNT, PERCENTAGE } from "../../constant/Constant";
 
 interface Props {
   label?: string;
@@ -25,7 +25,7 @@ const DiscountSelection = ({
       <div className="flex">
         <select
           id="discount"
-          name={'discount_type'}
+          name={"discount_type"}
           value={discount_type}
           onChange={handleChangeDiscount}
           className="w-2/5 pl-4 cursor-pointer bg-gray-200 border border-gray-300 text-gray-900
@@ -37,9 +37,9 @@ const DiscountSelection = ({
           <option value={FIXED_AMOUNT}>Amount (&euro;)</option>
         </select>
         <input
-          id={'discount'}
-          name={'discount_value'}
-          type={'number'}
+          id={"discount"}
+          name={"discount_value"}
+          type={"number"}
           min={0}
           value={discount_value}
           className="w-3/5 bg-gray-50 border border-gray-300 text-gray-900 font-medium sm:text-sm
@@ -49,7 +49,7 @@ const DiscountSelection = ({
           onChange={handleChangeDiscount}
         />
       </div>
-      {errorMessage !== '' && (
+      {errorMessage !== "" && (
         <p className="mt-1 text-sm text-gray-500 text-red-500">
           {errorMessage}
         </p>

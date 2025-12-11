@@ -1,9 +1,9 @@
-import { CROSS_SELL, DASHBOARD, SETTINGS, UPSELL } from './constant/Constant';
-import { FIXED_AMOUNT, PERCENTAGE } from './constant/Constant';
-import CrossSell from './pages/crossSell/CrossSell';
-import Dashboard from './pages/dashboard/Dashboard';
-import { Settings } from './pages/settings/Settings';
-import Upsell from './pages/upsell/Upsell';
+import { CROSS_SELL, DASHBOARD, SETTINGS, UPSELL } from "./constant/Constant";
+import { FIXED_AMOUNT, PERCENTAGE } from "./constant/Constant";
+import CrossSell from "./pages/crossSell/CrossSell";
+import Dashboard from "./pages/dashboard/Dashboard";
+import { Settings } from "./pages/settings/Settings";
+import Upsell from "./pages/upsell/Upsell";
 
 export function calculateFinalPrice(
   originalPrice: number,
@@ -23,13 +23,13 @@ export function calculateFinalPrice(
 
 export function getView(href: string) {
   switch (href) {
-    case '/dashboard':
+    case "/dashboard":
       return <Dashboard />;
-    case '/upsell':
+    case "/upsell":
       return <Upsell />;
-    case '/crosssell':
+    case "/crosssell":
       return <CrossSell />;
-    case '/settings':
+    case "/settings":
       return <Settings />;
     default:
       return <></>;
@@ -38,13 +38,13 @@ export function getView(href: string) {
 
 export function getNavigation(href: string) {
   switch (href) {
-    case '/dashboard':
+    case "/dashboard":
       return DASHBOARD;
-    case '/upsell':
+    case "/upsell":
       return UPSELL;
-    case '/crosssell':
+    case "/crosssell":
       return CROSS_SELL;
-    case '/settings':
+    case "/settings":
       return SETTINGS;
     default:
       return DASHBOARD;
@@ -53,14 +53,14 @@ export function getNavigation(href: string) {
 
 export function formatDate(date: Date) {
   const d = new Date(date);
-  let month = '' + (d.getMonth() + 1);
-  let day = '' + d.getDate();
+  let month = "" + (d.getMonth() + 1);
+  let day = "" + d.getDate();
   const year = d.getFullYear();
 
-  if (month.length < 2) month = '0' + month;
-  if (day.length < 2) day = '0' + day;
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
 
-  return [year, month, day].join('-');
+  return [year, month, day].join("-");
 }
 
 export function listDateLabels(startDate: Date, endDate: Date) {
@@ -97,5 +97,5 @@ export function percentageGrowth(data: number[]) {
 }
 
 export function documentTitle(title: string) {
-  document.title = title ? title : 'Crosslink';
+  document.title = title ? title : "Crosslink";
 }

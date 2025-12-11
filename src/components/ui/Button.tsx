@@ -1,6 +1,6 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
-import { RootState } from '../../store';
+import { RootState } from "../../store";
 
 interface Props {
   icon?: string;

@@ -1,13 +1,13 @@
-import { ChangeEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { ChangeEvent, useState } from "react";
+import { useDispatch } from "react-redux";
 
-import { PERCENTAGE } from '../../constant/Constant';
-import CrossSell from '../../pages/crossSell/CrossSell';
-import { changeView } from '../../reducers/SidebarSlice';
-import { CrossSellWidget } from '../../types/CrossSell';
-import DiscountSelection from '../discount/DiscountSelection';
-import InputProducts from '../product/InputProducts';
-import Input from '../ui/Input';
+import { PERCENTAGE } from "../../constant/Constant";
+import CrossSell from "../../pages/crossSell/CrossSell";
+import { changeView } from "../../reducers/SidebarSlice";
+import { CrossSellWidget } from "../../types/CrossSell";
+import DiscountSelection from "../discount/DiscountSelection";
+import InputProducts from "../product/InputProducts";
+import Input from "../ui/Input";
 
 type Props = {
   title: string;
@@ -37,15 +37,15 @@ const CrossSellWidgetForm = ({
   const handleChangeDiscount = (event: any) => {
     const { name, value } = event.target;
     const discountKey =
-      name === 'code'
-        ? 'code'
-        : name === 'discount_type'
-          ? 'value_type'
-          : 'value';
+      name === "code"
+        ? "code"
+        : name === "discount_type"
+          ? "value_type"
+          : "value";
 
     setCrossSellWidget({
       ...crossSellWidget,
-      ['discount']: {
+      discount: {
         ...crossSellWidget.discount,
         [discountKey]: value,
       },
@@ -57,12 +57,12 @@ const CrossSellWidgetForm = ({
     if (event.target.checked) {
       setCrossSellWidget({
         ...crossSellWidget,
-        ['discount']: {
-          code: '',
+        discount: {
+          code: "",
           value: 0,
           value_type: PERCENTAGE,
           shop: crossSellWidget.shop,
-          status: 'active',
+          status: "active",
           id: null,
           cms_discount_id: null,
           start_date: null,
@@ -72,7 +72,7 @@ const CrossSellWidgetForm = ({
     } else {
       setCrossSellWidget({
         ...crossSellWidget,
-        ['discount']: null,
+        discount: null,
       });
     }
   };
@@ -125,7 +125,7 @@ const CrossSellWidgetForm = ({
           <input
             type="checkbox"
             className="sr-only peer"
-            name={'activeDiscount'}
+            name={"activeDiscount"}
             checked={activeDiscount}
             onChange={changeActiveDiscount}
           />
@@ -148,7 +148,7 @@ const CrossSellWidgetForm = ({
               type="text"
               name="code"
               value={
-                crossSellWidget.discount ? crossSellWidget.discount?.code : ''
+                crossSellWidget.discount ? crossSellWidget.discount?.code : ""
               }
               placeholder="Enter Your Code"
               onChange={handleChangeDiscount}
@@ -185,7 +185,7 @@ const CrossSellWidgetForm = ({
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded"
           onClick={handleCreateWidget ? handleCreateWidget : handleEditWidget}
         >
-          {handleCreateWidget ? 'Create' : 'Edit'}
+          {handleCreateWidget ? "Create" : "Edit"}
         </button>
       </div>
     </>

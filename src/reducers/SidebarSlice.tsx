@@ -1,6 +1,6 @@
-import { ReactElement } from 'react';
-import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
+import { ReactElement } from "react";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 interface SidebarState {
   navigation: number;
@@ -15,7 +15,7 @@ const initialState: SidebarState = {
 };
 
 export const sidebarSlice = createSlice({
-  name: 'sidebar',
+  name: "sidebar",
   initialState,
   reducers: {
     changeNavigation: (state, action: PayloadAction<number>) => {

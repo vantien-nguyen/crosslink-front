@@ -1,7 +1,7 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import actionReducer from '../reducers/ActionSlice';
-import sidebarReducer from '../reducers/SidebarSlice';
+import actionReducer from "../reducers/ActionSlice";
+import sidebarReducer from "../reducers/SidebarSlice";
 
 // Create the root reducer independently to obtain the RootState type
 const rootReducer = combineReducers({
@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),

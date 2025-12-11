@@ -1,6 +1,6 @@
-import { formatDate } from '../utils';
+import { formatDate } from "../utils";
 
-import axiosPrivate from './axios';
+import axiosPrivate from "./axios";
 
 export const getShopActivities = async (
   shopId: number,

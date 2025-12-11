@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useMutation } from '@tanstack/react-query';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useMutation } from "@tanstack/react-query";
 
-import { editUpsellWidget } from '../../api/UpsellAPIs';
-import ChartIcon from '../../assets/icons/chart.svg';
-import DeleteIcon from '../../assets/icons/delete.svg';
-import EditIcon from '../../assets/icons/edit.svg';
-import { ERROR, SUCCESS } from '../../constant/Constant';
-import UpsellWidgetEdit from '../../pages/upsell/UpsellWidgetEdit';
-import { changeMessage } from '../../reducers/ActionSlice';
-import { changeView } from '../../reducers/SidebarSlice';
-import { UpsellWidget } from '../../types/Upsell';
-import { calculateFinalPrice } from '../../utils';
-import Toggle from '../ui/Toggle';
+import { editUpsellWidget } from "../../api/UpsellAPIs";
+import ChartIcon from "../../assets/icons/chart.svg";
+import DeleteIcon from "../../assets/icons/delete.svg";
+import EditIcon from "../../assets/icons/edit.svg";
+import { ERROR, SUCCESS } from "../../constant/Constant";
+import UpsellWidgetEdit from "../../pages/upsell/UpsellWidgetEdit";
+import { changeMessage } from "../../reducers/ActionSlice";
+import { changeView } from "../../reducers/SidebarSlice";
+import { UpsellWidget } from "../../types/Upsell";
+import { calculateFinalPrice } from "../../utils";
+import Toggle from "../ui/Toggle";
 
 type Props = {
   widget: UpsellWidget;
@@ -28,9 +28,9 @@ export default function UpsellWidgetItem({
 
   const updateUpsellWidgetStatusMutation = useMutation({
     mutationFn: editUpsellWidget,
-    onSuccess: newUpsellWidget => {
+    onSuccess: (newUpsellWidget) => {
       setUpsellWidget(newUpsellWidget);
-      const message = `Upsell widget ${newUpsellWidget.status === 'active' ? 'activated!' : 'deactivated!'}`;
+      const message = `Upsell widget ${newUpsellWidget.status === "active" ? "activated!" : "deactivated!"}`;
 
       dispatch(
         changeMessage({
@@ -39,7 +39,7 @@ export default function UpsellWidgetItem({
         }),
       );
     },
-    onError: error => {
+    onError: (error) => {
       dispatch(
         changeMessage({
           content: error.message,
@@ -52,7 +52,7 @@ export default function UpsellWidgetItem({
   function handleUpdateWidgetStatus(event: any) {
     const upsellWidgetUpdate = {
       ...upsellWidget,
-      ['status']: event.target.checked ? 'active' : 'inactive',
+      status: event.target.checked ? "active" : "inactive",
     };
 
     updateUpsellWidgetStatusMutation.mutate(upsellWidgetUpdate);
@@ -74,7 +74,7 @@ export default function UpsellWidgetItem({
           </div>
           <Toggle
             className="justify-end"
-            checked={upsellWidget.status === 'active'}
+            checked={upsellWidget.status === "active"}
             onChange={handleUpdateWidgetStatus}
           />
         </div>
@@ -101,8 +101,8 @@ export default function UpsellWidgetItem({
           <p
             className={`float-left text-sm font-semibold dark:text-gray-400 ${
               upsellWidget.discount_value > 0
-                ? 'line-through text-gray-500'
-                : 'text-gray-700'
+                ? "line-through text-gray-500"
+                : "text-gray-700"
             }`}
           >
             €{upsellWidget.detailed_upsell_product?.price}
@@ -125,7 +125,7 @@ export default function UpsellWidgetItem({
           <button
             className="mr-3"
             onClick={() => {
-              console.log('dahsboard');
+              console.log("dahsboard");
             }}
           >
             <div className="flex items-center">

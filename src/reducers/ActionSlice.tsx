@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { SUCCESS } from '../constant/Constant';
+import { SUCCESS } from "../constant/Constant";
 
 interface Message {
   content: string;
@@ -14,14 +14,14 @@ interface ActionState {
 
 const initialState: ActionState = {
   message: {
-    content: '',
+    content: "",
     type: SUCCESS,
   },
   loading: false,
 };
 
 export const messageSlice = createSlice({
-  name: 'action',
+  name: "action",
   initialState,
   reducers: {
     changeMessage: (state, action: PayloadAction<Message>) => {

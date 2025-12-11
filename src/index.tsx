@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import App from './pages/App';
-import { store } from './store/index';
-import reportWebVitals from './reportWebVitals';
+import App from "./pages/App";
+import { store } from "./store/index";
+import reportWebVitals from "./reportWebVitals";
 
-import './styles/index.css';
+import "./styles/index.css";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement,
+  document.getElementById("root") as HTMLElement,
 );
 
 const queryClient = new QueryClient();

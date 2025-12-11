@@ -1,4 +1,4 @@
-import axiosPrivate from './axios';
+import axiosPrivate from "./axios";
 
 export const signOut = async () => {
   const response = await axiosPrivate.post(`api/users/signout/`);

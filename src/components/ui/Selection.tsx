@@ -21,7 +21,7 @@ const Selection = ({ id, value, items, handleChange, className }: Props) => {
           dark:focus:ring-blue-500 dark:focus:border-blue-500 hover:cursor-pointer"
         onChange={handleChange}
       >
-        {items.map(item => {
+        {items.map((item) => {
           return (
             <option key={item.key} value={item.key}>
               {item.name}

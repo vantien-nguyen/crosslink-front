@@ -1,13 +1,13 @@
-import { ChangeEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { ChangeEvent, useState } from "react";
+import { useDispatch } from "react-redux";
 
-import Upsell from '../../pages/upsell/Upsell';
-import { changeView } from '../../reducers/SidebarSlice';
-import { UpsellWidget } from '../../types/Upsell';
-import DiscountSelection from '../discount/DiscountSelection';
-import InputProduct from '../product/InputProduct';
-import InputProducts from '../product/InputProducts';
-import Input from '../ui/Input';
+import Upsell from "../../pages/upsell/Upsell";
+import { changeView } from "../../reducers/SidebarSlice";
+import { UpsellWidget } from "../../types/Upsell";
+import DiscountSelection from "../discount/DiscountSelection";
+import InputProduct from "../product/InputProduct";
+import InputProducts from "../product/InputProducts";
+import Input from "../ui/Input";
 
 interface Props {
   title: string;
@@ -44,10 +44,10 @@ const UpsellWidgetForm = ({
   const handleChangeDiscount = (event: any) => {
     const { name, value } = event.target;
 
-    if (name === 'activeDiscount' && !event.target.checked) {
+    if (name === "activeDiscount" && !event.target.checked) {
       setUpsellWidget({
         ...upsellWidget,
-        ['discount_value']: 0,
+        discount_value: 0,
       });
     } else
       setUpsellWidget({
@@ -127,7 +127,7 @@ const UpsellWidgetForm = ({
           <input
             type="checkbox"
             className="sr-only peer"
-            name={'activeDiscount'}
+            name={"activeDiscount"}
             checked={activeDiscount}
             onChange={() => setActiveDiscount(!activeDiscount)}
           />
@@ -164,7 +164,7 @@ const UpsellWidgetForm = ({
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md py-1.5 px-4"
           onClick={handleCreateWidget ? handleCreateWidget : handleEditWidget}
         >
-          {handleCreateWidget ? 'Create' : 'Edit'}
+          {handleCreateWidget ? "Create" : "Edit"}
         </button>
       </div>
     </>

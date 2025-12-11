@@ -1,5 +1,5 @@
-import { Product } from '../../types/Product';
-import Input from '../ui/Input';
+import { Product } from "../../types/Product";
+import Input from "../ui/Input";
 
 interface Props {
   id: string;

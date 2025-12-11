@@ -1,29 +1,29 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { signUp } from '../../api/Auth';
-import Logo from '../../assets/icons/logo.png';
-import Input from '../../components/ui/Input';
+import { signUp } from "../../api/Auth";
+import Logo from "../../assets/icons/logo.png";
+import Input from "../../components/ui/Input";
 import {
   CONFIRM_PASSWORD_MSG,
   STRONG_PASSWORD_MSG,
   STRONG_PASSWORD_REGEX,
-} from '../../constant/Constant';
+} from "../../constant/Constant";
 
 export default function SignUp() {
   const queryParams = new URLSearchParams(window.location.search);
-  const [shopUrl, setShopUrl] = useState(queryParams.get('shop_url') || '');
-  const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [password, setPassword] = useState('');
-  const [shopUrlErrorMsg, setShopUrlErrorMsg] = useState('');
-  const [firstNameErrorMsg, setFirstNameErrorMsg] = useState('');
-  const [lastNameErrorMsg, setLastNameErrorMsg] = useState('');
-  const [emailErrorMsg, setEmailErrorMsg] = useState('');
-  const [passwordMsg, setPasswordMsg] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [confirmPasswordErrorMsg, setConfirmPasswordErrorMsg] = useState('');
+  const [shopUrl, setShopUrl] = useState(queryParams.get("shop_url") || "");
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+  const [shopUrlErrorMsg, setShopUrlErrorMsg] = useState("");
+  const [firstNameErrorMsg, setFirstNameErrorMsg] = useState("");
+  const [lastNameErrorMsg, setLastNameErrorMsg] = useState("");
+  const [emailErrorMsg, setEmailErrorMsg] = useState("");
+  const [passwordMsg, setPasswordMsg] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPasswordErrorMsg, setConfirmPasswordErrorMsg] = useState("");
   const navigate = useNavigate();
 
   const signup = async (e: { preventDefault: () => void }) => {
@@ -40,11 +40,11 @@ export default function SignUp() {
         });
 
         if (response?.status == 200) {
-          navigate('/signin', { replace: true });
+          navigate("/signin", { replace: true });
         } else {
           const errorMsg = response?.response?.data?.message;
 
-          if (errorMsg === 'Shop not found') {
+          if (errorMsg === "Shop not found") {
             setShopUrlErrorMsg(errorMsg);
           }
         }
@@ -53,28 +53,28 @@ export default function SignUp() {
   };
 
   function checkSignupForm() {
-    setPasswordMsg('');
-    setShopUrlErrorMsg('');
-    setFirstNameErrorMsg('');
-    setLastNameErrorMsg('');
-    setConfirmPasswordErrorMsg('');
-    setEmailErrorMsg('');
+    setPasswordMsg("");
+    setShopUrlErrorMsg("");
+    setFirstNameErrorMsg("");
+    setLastNameErrorMsg("");
+    setConfirmPasswordErrorMsg("");
+    setEmailErrorMsg("");
     let checkedForm = true;
 
-    if (shopUrl === '') {
-      setShopUrlErrorMsg('Shop url must be not empty.');
+    if (shopUrl === "") {
+      setShopUrlErrorMsg("Shop url must be not empty.");
       checkedForm = false;
     }
-    if (email === '') {
-      setEmailErrorMsg('Email must be not empty.');
+    if (email === "") {
+      setEmailErrorMsg("Email must be not empty.");
       checkedForm = false;
     }
-    if (firstName === '') {
-      setFirstNameErrorMsg('First name must be not empty.');
+    if (firstName === "") {
+      setFirstNameErrorMsg("First name must be not empty.");
       checkedForm = false;
     }
-    if (lastName === '') {
-      setLastNameErrorMsg('Last name must be not empty.');
+    if (lastName === "") {
+      setLastNameErrorMsg("Last name must be not empty.");
       checkedForm = false;
     }
     if (!STRONG_PASSWORD_REGEX.test(password)) {
@@ -86,12 +86,12 @@ export default function SignUp() {
       checkedForm = false;
     }
     if (checkedForm) {
-      setPasswordMsg('');
-      setShopUrlErrorMsg('');
-      setFirstNameErrorMsg('');
-      setLastNameErrorMsg('');
-      setConfirmPasswordErrorMsg('');
-      setEmailErrorMsg('');
+      setPasswordMsg("");
+      setShopUrlErrorMsg("");
+      setFirstNameErrorMsg("");
+      setLastNameErrorMsg("");
+      setConfirmPasswordErrorMsg("");
+      setEmailErrorMsg("");
     }
     return checkedForm;
   }
@@ -125,7 +125,7 @@ export default function SignUp() {
                   value={shopUrl}
                   error={shopUrlErrorMsg}
                   placeholder="example@shopify.com"
-                  onChange={e => setShopUrl(e.target.value)}
+                  onChange={(e) => setShopUrl(e.target.value)}
                 />
 
                 <Input
@@ -137,7 +137,7 @@ export default function SignUp() {
                   value={email}
                   error={emailErrorMsg}
                   placeholder="example@gmail.com"
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
 
                 <div className="flex items-stretch justify-between gap-2">
@@ -151,7 +151,7 @@ export default function SignUp() {
                       value={firstName}
                       error={firstNameErrorMsg}
                       placeholder="First Name"
-                      onChange={e => setFirstName(e.target.value)}
+                      onChange={(e) => setFirstName(e.target.value)}
                     />
                   </div>
                   <div className="self-start">
@@ -164,7 +164,7 @@ export default function SignUp() {
                       error={lastNameErrorMsg}
                       required={true}
                       placeholder="Last Name"
-                      onChange={e => setLastName(e.target.value)}
+                      onChange={(e) => setLastName(e.target.value)}
                     />
                   </div>
                 </div>
@@ -178,7 +178,7 @@ export default function SignUp() {
                   value={password}
                   placeholder="••••••••"
                   error={passwordMsg}
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <Input
                   id="confirmPassword"
@@ -189,7 +189,7 @@ export default function SignUp() {
                   value={confirmPassword}
                   placeholder="••••••••"
                   error={confirmPasswordErrorMsg}
-                  onChange={e => setConfirmPassword(e.target.value)}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </form>
               <div className="mt-2">

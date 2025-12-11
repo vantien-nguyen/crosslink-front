@@ -1,14 +1,14 @@
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 
-import { PERCENTAGE } from '../../constant/Constant';
-import { CrossSellDiscount, CrossSellWidget } from '../../types/CrossSell';
+import { PERCENTAGE } from "../../constant/Constant";
+import { CrossSellDiscount, CrossSellWidget } from "../../types/CrossSell";
 
 interface Props {
   crossSellWidget: CrossSellWidget;
 }
 
 const PreviewCrossSellWidget = ({ crossSellWidget }: Props) => {
-  const [cookies] = useCookies(['shopName', 'logoUrl']);
+  const [cookies] = useCookies(["shopName", "logoUrl"]);
   const crossSellProducts = crossSellWidget.detailed_products;
 
   const hasDiscount = () => {
@@ -22,9 +22,9 @@ const PreviewCrossSellWidget = ({ crossSellWidget }: Props) => {
 
   const discountTitle = (discount: CrossSellDiscount | null) => {
     if (discount) {
-      return `${discount.value} ${discount.value_type === PERCENTAGE ? '%' : '€'} offered with the code: ${discount.code}`;
+      return `${discount.value} ${discount.value_type === PERCENTAGE ? "%" : "€"} offered with the code: ${discount.code}`;
     }
-    return '';
+    return "";
   };
 
   const finalPrice = (
@@ -32,7 +32,7 @@ const PreviewCrossSellWidget = ({ crossSellWidget }: Props) => {
     discount: CrossSellDiscount | null,
   ) => {
     if (!discount) {
-      return '';
+      return "";
     }
     if (discount.value_type === PERCENTAGE) {
       return `${(originalPrice * (1 - discount.value / 100)).toFixed(2)}€`;
@@ -71,7 +71,7 @@ const PreviewCrossSellWidget = ({ crossSellWidget }: Props) => {
           </span>
         </div>
         <div className="mt-4 flex flex-row gap-1 md:gap-2 overflow-x-auto">
-          {crossSellProducts.slice(0, 3).map(product => {
+          {crossSellProducts.slice(0, 3).map((product) => {
             return (
               <div
                 className="max-w-24 max-h-48 md:max-w-32 md:max-h-64"
@@ -87,7 +87,7 @@ const PreviewCrossSellWidget = ({ crossSellWidget }: Props) => {
                   </p>
                   <div className="inline-flex">
                     <p
-                      className={`text-xs ${hasDiscount() && 'line-through text-gray-500'}`}
+                      className={`text-xs ${hasDiscount() && "line-through text-gray-500"}`}
                     >
                       {product.price}&euro;
                     </p>
@@ -95,7 +95,7 @@ const PreviewCrossSellWidget = ({ crossSellWidget }: Props) => {
                       {finalPrice(product.price, crossSellWidget.discount)}
                     </p>
                   </div>
-                  <p className="text-xs font-bold text-gray-400">{'Voir >'}</p>
+                  <p className="text-xs font-bold text-gray-400">{"Voir >"}</p>
                 </div>
               </div>
             );

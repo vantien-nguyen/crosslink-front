@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { SUCCESS } from '../../constant/Constant';
-import { changeMessage } from '../../reducers/ActionSlice';
-import { RootState } from '../../store';
+import { SUCCESS } from "../../constant/Constant";
+import { changeMessage } from "../../reducers/ActionSlice";
+import { RootState } from "../../store";
 
 export default function Toast() {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export default function Toast() {
     setTimeout(() => {
       dispatch(
         changeMessage({
-          content: '',
+          content: "",
           type: SUCCESS,
         }),
       );
@@ -73,7 +73,7 @@ export default function Toast() {
           onClick={() =>
             dispatch(
               changeMessage({
-                content: '',
+                content: "",
                 type: SUCCESS,
               }),
             )
